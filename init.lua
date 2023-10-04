@@ -3,6 +3,7 @@ local ecs = require(path .. ".ecs.ecs")
 
 local core = {}
 core.event = require(path .. ".event")
+core.viewport = require(path .. ".viewport")
 
 core.Entity = require(path .. ".ecs.entity")
 core.Group = require(path .. ".ecs.group")
@@ -13,6 +14,7 @@ core.Queue = require(path .. ".types.queue")
 local utils = require(path .. ".utils")
 utils.copyTo(utils, core)
 utils.copyTo(require(path .. ".math_funcs"), core)
+utils.copyTo(require(path .. ".vector"), core)
 
 core.tickRate = 1 / 20
 local tickDelta = 0
@@ -23,6 +25,14 @@ core.event.define("tick")
 
 core.event.define("draw")
 core.event.define("ui")
+
+core.viewport.create("main", 320, 180, true)
+core.viewport.create("gui", 320, 180)
+core.viewport.setBackgroundColor("gui", 0, 0, 0, 0)
+
+core.removeEntity = ecs.removeEntity
+
+require(path .. ".ecs.components")
 
 function core.initialize()
 end
@@ -41,8 +51,18 @@ function core.update(dt)
 end
 
 function core.draw()
-  core.event.call("draw")
-  core.event.call("ui")
+  core.viewport.clear("main")
+  core.viewport.drawTo("main", function()
+    core.event.call("draw")
+  end)
+
+  core.viewport.clear("gui")
+  core.viewport.drawTo("gui", function()
+    core.event.call("ui")
+  end)
+
+  core.viewport.draw("main")
+  core.viewport.draw("gui")
 end
 
 return core

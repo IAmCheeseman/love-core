@@ -12,6 +12,11 @@ function utils.copy(t)
     copy[k] = v
   end
 
+  local mt = getmetatable(t)
+  if mt then
+    setmetatable(copy, mt)
+  end
+
   return copy
 end
 
@@ -24,6 +29,11 @@ function utils.deepCopy(t)
     else
       copy[k] = v
     end
+  end
+
+  local mt = getmetatable(t)
+  if mt then
+    setmetatable(copy, mt)
   end
 
   return copy

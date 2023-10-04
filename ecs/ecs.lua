@@ -10,16 +10,17 @@ local removalQueue = Queue()
 
 event.define("entityAdded")
 event.define("entityRemoved")
+event.define("entityChanged")
 
 local instances = {}
 ecs.instances = instances
 
 function ecs.addEntity(entity)
-  additionQueue:add(entity)
+  additionQueue:enqueue(entity)
 end
 
 function ecs.removeEntity(entity)
-  removalQueue:add(entity)
+  removalQueue:enqueue(entity)
 end
 
 local function flushAdditionQueue(entity)

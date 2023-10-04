@@ -4,7 +4,7 @@ local events = {}
 
 function event.define(name)
   if events[name] then
-    error(("Event '%s' already defined."):format(name))
+    return
   end
 
   local newEvent = {

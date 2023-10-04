@@ -1,16 +1,22 @@
 local path = (...):gsub(".types.sparse_set$", "")
 local utils = require(path .. ".utils")
 
-local function get(self, item)
+local sparseSet = {}
+sparseSet.__index = sparseSet
+sparseSet.__len = function(t)
+  return #t.dense
+end
+
+function sparseSet:get(item)
   return self.dense[self.sparse[item]]
 end
 
-local function add(self, item)
+function sparseSet:add(item)
   table.insert(self.dense, item)
   self.sparse[item] = #self.dense
 end
 
-local function remove(self, item)
+function sparseSet:remove(item)
   local index = self.sparse[item]
   utils.swapRemove(self.dense, index)
 
@@ -18,20 +24,23 @@ local function remove(self, item)
   self.sparse[newItem] = index
 end
 
-local function has(self, item)
+function sparseSet:has(item)
   return self.sparse[item] ~= nil
 end
 
+function sparseSet:iter()
+  local i = 0
+  return function()
+    i = i + 1
+    return self.dense[i]
+  end
+end
+
 local function SparseSet()
-  return {
+  return setmetatable({
     sparse = {},
     dense = {},
-
-    add = add,
-    get = get,
-    remove = remove,
-    has = has,
-  }
+  }, sparseSet)
 end
 
 return SparseSet

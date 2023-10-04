@@ -1,23 +1,17 @@
-local queueMetatable = {
-  __index = function(k, v)
-    return v.items[k]
-  end,
-  __newindex = function(_, _, _)
-    error("Queues are readonly!")
-  end
-}
+local queue = {}
+queue.__index = queue
 
-local function enqueue(self, item)
+function queue:enqueue(item)
   table.insert(self.items, item)
 end
 
-local function dequeue(self)
+function queue:dequeue()
   local item = self.items[#self.items]
   self.items[#self.items] = nil
   return item
 end
 
-local function flush(self, f)
+function queue:flush(f)
   local item = self:dequeue()
   while item do
     f(item)
@@ -28,11 +22,7 @@ end
 local function Queue()
   return setmetatable({
     items = {},
-
-    enqueue = enqueue,
-    dequeue = dequeue,
-    flush = flush
-  }, queueMetatable)
+  }, queue)
 end
 
 return Queue

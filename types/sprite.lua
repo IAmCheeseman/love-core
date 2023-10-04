@@ -7,8 +7,8 @@ local TAG_CHUNK = 0x2018
 local sprite = {}
 sprite.__index = sprite
 
-local function Sprite(path)
-  local file = loadAse(path)
+local function Sprite(spritePath)
+  local file = loadAse(spritePath)
 
   local width = file.header.width
   local height = file.header.height
@@ -52,6 +52,8 @@ local function Sprite(path)
   return setmetatable({
     width = width,
     height = height,
+    offsetx = 0,
+    offsety = 0,
     frames = frames,
     tags = tags,
     currentAnimation = currentAnimation,
@@ -69,6 +71,28 @@ function sprite:play(name)
 
   self.currentAnimation = name
   self.frameIndex = self.tags[name].from
+end
+
+function sprite:setOffsetPreset(horizontal, vertical)
+  if horizontal == "left" then
+    self.offsetx = 0
+  elseif horizontal == "center" then
+    self.offsetx = self.width / 2
+  elseif horizontal == "right" then
+    self.offsety = self.width
+  else
+    error("Invalid horizontal preset.")
+  end
+
+  if vertical == "top" then
+    self.offsety = 0
+  elseif vertical == "center" then
+    self.offsety = self.height / 2
+  elseif vertical == "bottom" then
+    self.offsety = self.height
+  else
+    error("Invalid vertical preset.")
+  end
 end
 
 function sprite:update(dt)
@@ -94,7 +118,10 @@ function sprite:draw(x, y, rotation, scalex, scaley)
 
   love.graphics.draw(
       self.frames[self.frameIndex].image,
-      x, y, rotation, scalex, scaley)
+      x, y,
+      rotation,
+      scalex, scaley,
+      self.offsetx, self.offsety)
 end
 
 return Sprite
