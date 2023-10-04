@@ -26,6 +26,9 @@ event.on("entityRemoved", function(entity)
 end)
 
 function groupMt:add(entity)
+  if self.entities:has(entity) then
+    return
+  end
   self.entities:add(entity)
 end
 

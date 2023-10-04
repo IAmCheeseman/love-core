@@ -1,11 +1,13 @@
 local path = (...):gsub(".types.sprite$", "")
 local loadAse = require(path .. ".thirdparty.lovease")
+local utils = require(path .. ".utils")
 
 local IMAGE_CHUNK = 0x2005
 local TAG_CHUNK = 0x2018
 
 local sprite = {}
 sprite.__index = sprite
+sprite.copy = utils.deepCopy
 
 local function Sprite(spritePath)
   local file = loadAse(spritePath)
