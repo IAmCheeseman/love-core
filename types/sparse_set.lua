@@ -12,6 +12,9 @@ function sparseSet:get(item)
 end
 
 function sparseSet:add(item)
+  if self:has(item) then
+    return
+  end
   table.insert(self.dense, item)
   self.sparse[item] = #self.dense
 end
