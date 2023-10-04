@@ -5,7 +5,7 @@ function m.frac(x)
 end
 
 function m.lerp(a, b, t)
-  return (b - a) * (1 - 0.5^t) + a
+  return (b - a) * t + a
 end
 
 function m.wrap(a, min, max)

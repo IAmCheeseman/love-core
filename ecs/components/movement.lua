@@ -1,6 +1,5 @@
 local path = (...):gsub(".ecs.components.movement$", "")
 local event = require(path .. ".event")
-local Group = require(path .. ".ecs.group")
 
 local moveGroup = Group("x", "y", "vx", "vy")
 

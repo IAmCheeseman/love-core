@@ -1,15 +1,17 @@
 local path = (...):gsub(".init$", "")
-local ecs = require(path .. ".ecs.ecs")
 
 local core = {}
 core.event = require(path .. ".event")
 core.viewport = require(path .. ".viewport")
+core.assetLoader = require(path .. ".asset_loader")
 
-core.Entity = require(path .. ".ecs.entity")
-core.Group = require(path .. ".ecs.group")
+SparseSet = require(path .. ".types.sparse_set")
+Queue = require(path .. ".types.queue")
 
-core.SparseSet = require(path .. ".types.sparse_set")
-core.Queue = require(path .. ".types.queue")
+Entity = require(path .. ".ecs.entity")
+Group = require(path .. ".ecs.group")
+
+local ecs = require(path .. ".ecs.ecs")
 
 local utils = require(path .. ".utils")
 utils.copyTo(utils, core)

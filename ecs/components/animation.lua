@@ -1,7 +1,6 @@
 local path = (...):gsub(".ecs.components.animation$", "")
 local event = require(path .. ".event")
 local utils = require(path .. ".utils")
-local Group = require(path .. ".ecs.group")
 
 local animGroup = Group("x", "y", "sprite")
 
