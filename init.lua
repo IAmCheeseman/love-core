@@ -4,6 +4,7 @@ local core = {}
 core.event = require(path .. ".event")
 core.viewport = require(path .. ".viewport")
 core.assetLoader = require(path .. ".asset_loader")
+core.vector = require(path .. ".vector")
 
 SparseSet = require(path .. ".types.sparse_set")
 Queue = require(path .. ".types.queue")
@@ -16,7 +17,6 @@ local ecs = require(path .. ".ecs.ecs")
 local utils = require(path .. ".utils")
 utils.copyTo(utils, core)
 utils.copyTo(require(path .. ".math_funcs"), core)
-utils.copyTo(require(path .. ".vector"), core)
 
 core.tickRate = 1 / 20
 local tickDelta = 0

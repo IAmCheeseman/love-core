@@ -15,11 +15,11 @@ local instances = {}
 ecs.instances = instances
 
 function ecs.addEntity(entity)
-  additionQueue:enqueue(entity)
+  additionQueue:push(entity)
 end
 
 function ecs.removeEntity(entity)
-  removalQueue:enqueue(entity)
+  removalQueue:pop(entity)
 end
 
 local function flushAdditionQueue(entity)

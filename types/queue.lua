@@ -1,21 +1,21 @@
 local queue = {}
 queue.__index = queue
 
-function queue:enqueue(item)
+function queue:push(item)
   table.insert(self.items, item)
 end
 
-function queue:dequeue()
-  local item = self.items[#self.items]
-  self.items[#self.items] = nil
+function queue:pop()
+  local item = self.items[1]
+  table.remove(self.items, 1)
   return item
 end
 
 function queue:flush(f)
-  local item = self:dequeue()
+  local item = self:pop()
   while item do
     f(item)
-    item = self:dequeue()
+    item = self:pop()
   end
 end
 
