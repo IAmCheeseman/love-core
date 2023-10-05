@@ -19,10 +19,10 @@ function queue:flush(f)
   end
 end
 
-local function Queue()
+local function newQueue()
   return setmetatable({
     items = {},
   }, queue)
 end
 
-return Queue
+return newQueue

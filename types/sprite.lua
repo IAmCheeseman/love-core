@@ -9,7 +9,7 @@ local sprite = {}
 sprite.__index = sprite
 sprite.copy = utils.deepCopy
 
-local function Sprite(spritePath)
+local function newSprite(spritePath)
   local file = loadAse(spritePath)
 
   local width = file.header.width
@@ -126,4 +126,4 @@ function sprite:draw(x, y, rotation, scalex, scaley)
       self.offsetx, self.offsety)
 end
 
-return Sprite
+return newSprite

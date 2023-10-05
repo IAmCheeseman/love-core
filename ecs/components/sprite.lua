@@ -1,7 +1,8 @@
 local path = (...):gsub(".ecs.components.sprite$", "")
 local event = require(path .. ".event")
+local newGroup = require(path .. ".ecs.group")
 
-local animGroup = Group("x", "y", "sprite")
+local animGroup = newGroup("x", "y", "sprite")
 
 event.on("update", function(dt)
   for entity in animGroup:iter() do

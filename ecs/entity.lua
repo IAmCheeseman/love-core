@@ -12,12 +12,12 @@ local entityMt = {
   end
 }
 
-local function Entity(definition)
+local function newEntity(definition)
   return function()
-    local newEntity = setmetatable(utils.deepCopy(definition), entityMt)
-    ecs.addEntity(newEntity)
-    return newEntity
+    local ent = setmetatable(utils.deepCopy(definition), entityMt)
+    ecs.addEntity(ent)
+    return ent
   end
 end
 
-return Entity
+return newEntity

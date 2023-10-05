@@ -1,11 +1,12 @@
 local path = (...):gsub(".ecs.ecs$", "")
 local event = require(path .. ".event")
 local utils = require(path .. ".utils")
+local newQueue = require(path .. ".types.queue")
 
 local ecs = {}
 
-local additionQueue = Queue()
-local removalQueue = Queue()
+local additionQueue = newQueue()
+local removalQueue = newQueue()
 
 event.define("entityAdded")
 event.define("entityRemoved")

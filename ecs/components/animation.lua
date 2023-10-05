@@ -1,8 +1,9 @@
 local path = (...):gsub(".ecs.components.animation$", "")
 local event = require(path .. ".event")
 local utils = require(path .. ".utils")
+local newGroup = require(path .. ".ecs.group")
 
-local animPrioritiesGroup = Group("animation", "sprite")
+local animPrioritiesGroup = newGroup("animation", "sprite")
 
 event.on("update", function(_)
   for entity in animPrioritiesGroup:iter() do

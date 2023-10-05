@@ -1,7 +1,8 @@
 local path = (...):gsub(".ecs.components.movement$", "")
 local event = require(path .. ".event")
+local newGroup = require(path .. ".ecs.group")
 
-local moveGroup = Group("x", "y", "vx", "vy")
+local moveGroup = newGroup("x", "y", "vx", "vy")
 
 event.on("update", function(dt)
   for entity in moveGroup:iter() do

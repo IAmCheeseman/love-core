@@ -1,5 +1,6 @@
 local path = (...):gsub(".ecs.group$", "")
 local event = require(path .. ".event")
+local newSparseSet = require(path .. ".types.sparse_set")
 
 local groups = {}
 
@@ -53,14 +54,14 @@ function groupMt:entityMatches(entity)
   return true
 end
 
-local function Group(...)
-  local newGroup = setmetatable({
+local function newGroup(...)
+  local group = setmetatable({
     components = {...},
-    entities = SparseSet(),
+    entities = newSparseSet(),
   }, groupMt)
 
-  table.insert(groups, newGroup)
-  return newGroup
+  table.insert(groups, group)
+  return group
 end
 
-return Group
+return newGroup

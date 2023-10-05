@@ -6,11 +6,11 @@ core.viewport = require(path .. ".viewport")
 core.assetLoader = require(path .. ".asset_loader")
 core.vector = require(path .. ".vector")
 
-SparseSet = require(path .. ".types.sparse_set")
-Queue = require(path .. ".types.queue")
+core.newSparseSet = require(path .. ".types.sparse_set")
+core.newQueue = require(path .. ".types.queue")
 
-Entity = require(path .. ".ecs.entity")
-Group = require(path .. ".ecs.group")
+core.newEntity = require(path .. ".ecs.entity")
+core.newGroup = require(path .. ".ecs.group")
 
 local ecs = require(path .. ".ecs.ecs")
 
