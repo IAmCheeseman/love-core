@@ -101,6 +101,11 @@ function sprite:update(dt)
   if self.currentAnimation then
     local tag = self.tags[self.currentAnimation]
 
+    if not tag then
+      self.frameIndex = 1
+      return
+    end
+
     self.time = self.time + dt
 
     if self.time >= self.frames[self.frameIndex].duration then

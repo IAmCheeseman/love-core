@@ -12,6 +12,8 @@ core.newQueue = require(path .. ".types.queue")
 core.newEntity = require(path .. ".ecs.entity")
 core.newGroup = require(path .. ".ecs.group")
 
+core.log = require(path .. ".log")
+
 local ecs = require(path .. ".ecs.ecs")
 
 local utils = require(path .. ".utils")
@@ -36,6 +38,7 @@ core.viewport.setBackgroundColor("gui", 0, 0, 0, 0)
 core.removeEntity = ecs.removeEntity
 
 require(path .. ".ecs.components")
+require(path .. ".error_handler")
 
 function core.getRuntime()
   return runtime

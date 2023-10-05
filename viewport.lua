@@ -1,6 +1,5 @@
 local path = (...):gsub(".viewport$", "")
 local m = require(path .. ".math_funcs")
-local utils = require("core.utils")
 
 local viewport = {}
 
@@ -67,7 +66,13 @@ function viewport.clear(name)
 end
 
 function viewport.drawTo(name, f)
-  viewports[name].canvas:renderTo(f)
+  local v = viewports[name]
+  love.graphics.push()
+  love.graphics.setCanvas(v.canvas)
+  love.graphics.translate(-v.camerax, -v.cameray)
+  f()
+  love.graphics.setCanvas()
+  love.graphics.pop()
 end
 
 function viewport.getMousePosition(name)
@@ -89,7 +94,7 @@ function viewport.draw(name)
   local quad
   if v.smoothCamera then
     quad = love.graphics.newQuad(
-        m.frac(v.camerax), m.frac(v.cameray),
+        -m.frac(v.camerax), -m.frac(v.cameray),
         v.width, v.height,
         v.width + 1, v.height + 1)
   else
