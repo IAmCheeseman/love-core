@@ -20,6 +20,7 @@ utils.copyTo(require(path .. ".vector"), core)
 
 core.tickRate = 1 / 20
 local tickDelta = 0
+local runtime = 0
 
 core.event.define("preUpdate")
 core.event.define("update")
@@ -36,12 +37,17 @@ core.removeEntity = ecs.removeEntity
 
 require(path .. ".ecs.components")
 
+function core.getRuntime()
+  return runtime
+end
+
 function core.initialize()
 end
 
 function core.update(dt)
   core.event.call("preUpdate", dt)
 
+  runtime = runtime + dt
   tickDelta = tickDelta + dt
   ecs.flushQueues()
 
