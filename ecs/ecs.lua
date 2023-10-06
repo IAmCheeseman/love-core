@@ -25,9 +25,10 @@ function ecs.removeEntity(entity)
 end
 
 function ecs.clearEntities()
-  for i = #instances, 1, -1 do
-    table.remove(instances, i)
+  for _, entity in ipairs(instances) do
+    ecs.removeEntity(entity)
   end
+  ecs.flushQueues()
   event.call("entitiesCleared")
 end
 
