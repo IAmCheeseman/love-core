@@ -39,12 +39,17 @@ core.removeEntity = ecs.removeEntity
 
 require(path .. ".ecs.components")
 require(path .. ".error_handler")
+core.slab = require(path .. ".thirdparty.slab")
 
 function core.getRuntime()
   return runtime
 end
 
 function core.initialize()
+  core.slab.SetINIStatePath(nil)
+  core.slab.Initialize()
+
+  core.slab.DisableDocks({ "Left", "Right", "Bottom" })
 end
 
 function core.update(dt)
@@ -54,6 +59,7 @@ function core.update(dt)
   tickDelta = tickDelta + dt
   ecs.flushQueues()
 
+  core.slab.Update(dt)
   core.event.call("update", dt)
   if tickDelta >= core.tickRate then
     core.event.call("tick", core.tickRate)
@@ -74,6 +80,9 @@ function core.draw()
 
   core.viewport.draw("main")
   core.viewport.draw("gui")
+
+  core.slab.Draw()
+  love.graphics.reset()
 end
 
 return core
