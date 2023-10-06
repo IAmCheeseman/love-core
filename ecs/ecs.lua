@@ -11,6 +11,7 @@ local removalQueue = newQueue()
 event.define("entityAdded")
 event.define("entityRemoved")
 event.define("entityChanged")
+event.define("entitiesCleared")
 
 local instances = {}
 ecs.instances = instances
@@ -21,6 +22,13 @@ end
 
 function ecs.removeEntity(entity)
   removalQueue:pop(entity)
+end
+
+function ecs.clearEntities()
+  for i = #instances, 1, -1 do
+    table.remove(instances, i)
+  end
+  event.call("entitiesCleared")
 end
 
 local function flushAdditionQueue(entity)

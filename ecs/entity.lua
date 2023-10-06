@@ -15,7 +15,6 @@ local entityMt = {
 local function newEntity(definition)
   return function()
     local ent = setmetatable(utils.deepCopy(definition), entityMt)
-    ecs.addEntity(ent)
     return ent
   end
 end

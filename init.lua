@@ -2,6 +2,14 @@ local path = (...):gsub(".init$", "")
 
 local core = {}
 core.event = require(path .. ".event")
+
+core.event.define("preUpdate")
+core.event.define("update")
+core.event.define("tick")
+
+core.event.define("draw")
+core.event.define("ui")
+
 core.viewport = require(path .. ".viewport")
 core.assetLoader = require(path .. ".asset_loader")
 core.vector = require(path .. ".vector")
@@ -13,6 +21,7 @@ core.newEntity = require(path .. ".ecs.entity")
 core.newGroup = require(path .. ".ecs.group")
 
 core.log = require(path .. ".log")
+core.state = require(path .. ".state")
 
 local ecs = require(path .. ".ecs.ecs")
 
@@ -24,18 +33,12 @@ core.tickRate = 1 / 20
 local tickDelta = 0
 local runtime = 0
 
-core.event.define("preUpdate")
-core.event.define("update")
-core.event.define("tick")
-
-core.event.define("draw")
-core.event.define("ui")
-
 core.viewport.create("main", 320, 180, true)
 core.viewport.create("gui", 320, 180)
 core.viewport.setBackgroundColor("gui", 0, 0, 0, 0)
 
 core.removeEntity = ecs.removeEntity
+core.addEntity = ecs.addEntity
 
 require(path .. ".ecs.components")
 require(path .. ".error_handler")
