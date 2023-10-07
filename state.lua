@@ -48,6 +48,22 @@ event.on("ui", function()
   utils.nilCall(state.getCurrent().ui)
 end)
 
+event.on("inkyUi", function()
+  utils.nilCall(state.getCurrent().inkyUi)
+end)
+
+event.on("mousePressed", function(button)
+  utils.nilCall(state.getCurrent().mousePressed, button)
+end)
+
+event.on("mouseReleased", function(button)
+  utils.nilCall(state.getCurrent().mouseReleased, button)
+end)
+
+event.on("mouseMoved", function(dx, dy)
+  utils.nilCall(state.getCurrent().mouseMoved, dx, dy)
+end)
+
 state.newState("none")
 
 return state
