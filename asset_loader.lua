@@ -79,4 +79,20 @@ function assetLoader.load(dirPath)
   return setmetatable(directory, assetDirMt)
 end
 
+function assetLoader.loadScripts(dirPath)
+  local files = love.filesystem.getDirectoryItems(dirPath)
+
+  for _, fileName in ipairs(files) do
+    local filePath = dirPath .. "/" .. fileName
+    local info = love.filesystem.getInfo(filePath)
+    if info then
+      if info.type == "file" then
+        if fileName:gmatch(".lua$") then
+          require(filePath:gsub(".lua$", ""))
+        end
+      end
+    end
+  end
+end
+
 return assetLoader
