@@ -13,8 +13,12 @@ local entityMt = {
 }
 
 local function newEntity(definition)
-  return function()
+  return function(overrides)
+    overrides = overrides or {}
     local ent = setmetatable(utils.deepCopy(definition), entityMt)
+    for k, v in pairs(overrides) do
+      ent[k] = v
+    end
     return ent
   end
 end
