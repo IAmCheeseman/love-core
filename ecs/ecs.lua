@@ -21,7 +21,7 @@ function ecs.addEntity(entity)
 end
 
 function ecs.removeEntity(entity)
-  removalQueue:pop(entity)
+  removalQueue:push(entity)
 end
 
 function ecs.clearEntities()
