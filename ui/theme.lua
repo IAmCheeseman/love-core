@@ -1,4 +1,4 @@
-return {
+local theme =  {
   font = love.graphics.newFont(32),
 
   lineStyle = "smooth",
@@ -13,3 +13,5 @@ return {
   bgColor = { 0.4, 0.4, 0.4 },
   fgColor = { 0.9, 0.9, 0.9 },
 }
+
+return theme

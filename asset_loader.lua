@@ -22,7 +22,7 @@ local loaders = {
   ogg = love.audio.newSource,
   wav = love.audio.newSource,
 
-  ttf = love.graphics.newFont,
+  ttf = love.filesystem.newFileData,
 
   txt = love.filesystem.read,
   json = openJson,

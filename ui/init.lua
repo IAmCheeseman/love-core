@@ -1,21 +1,33 @@
 local path = (...):gsub(".ui$", "")
 local inky = require(path .. ".thirdparty.inky")
 local event = require(path .. ".event")
+local utils = require(path .. ".utils")
 
 local scene = inky.scene()
 local pointer = inky.pointer(scene)
 
 local ui = {}
-ui.button = require(path .. ".ui.button")
-ui.label = require(path .. ".ui.label")
+local button = require(path .. ".ui.button")
+local label = require(path .. ".ui.label")
 
-for k, v in pairs(ui) do
-  ui[k] = function()
-    return v(scene)
-  end
+function ui.button(text, settings)
+  settings = settings or {}
+  local newButton = button(scene)
+  newButton.props.text = text
+  utils.copyTo(settings, newButton.props)
+  return newButton
+end
+
+function ui.label(text, settings)
+  settings = settings or {}
+  local newLabel = label(scene)
+  newLabel.props.text = text
+  utils.copyTo(settings, newLabel.props)
+  return newLabel
 end
 
 ui.theme = require(path .. ".ui.theme")
+ui.newVerticalRenderer = require(path .. ".ui.vertical_renderer")
 
 function ui.begin()
   scene:beginFrame()
