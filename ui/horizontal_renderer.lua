@@ -1,4 +1,4 @@
-local path = (...):gsub(".ui.vertical_renderer", "")
+local path = (...):gsub(".ui.horizontal_renderer$", "")
 local theme = require(path .. ".ui.theme")
 
 local verticalRenderer = {}
@@ -19,26 +19,26 @@ function verticalRenderer:getTransform(element)
       h = element.props.height or element.props.height or 16
     end
 
-    local x = self.x
+    local y = self.y
 
     if self.center then
-      x = x + (self.width - w) / 2
+      y = y + (self.height - h) / 2
     elseif self.width then
-      w = self.width
+      h = self.height
     end
 
-    return x, w, h
+    return y, w, h
 end
 
 function verticalRenderer:render()
   assert(not (self.center and not self.width),
       "Must define width if you want to center")
 
-  local y = self.y
+  local x = self.x
   for _, element in ipairs(self.elements) do
-    local x, w, h = self:getTransform(element)
+    local y, w, h = self:getTransform(element)
     element:render(x, y, w, h)
-    y = y + h + self.separation
+    x = x + w + self.separation
   end
 end
 

@@ -28,6 +28,7 @@ end
 
 ui.theme = require(path .. ".ui.theme")
 ui.newVerticalRenderer = require(path .. ".ui.vertical_renderer")
+ui.newHorizontalRenderer = require(path .. ".ui.horizontal_renderer")
 
 function ui.begin()
   scene:beginFrame()
