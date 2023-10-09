@@ -5,7 +5,7 @@ local viewport = require(path .. ".viewport")
 
 local cameraGroup = newGroup("camera", "x", "y")
 
-event.on("update", function(_)
+event.on("update", -1, function(_)
   for entity in cameraGroup:iter() do
     local width, height = viewport.getSize(entity.camera)
     viewport.setCameraPos(
