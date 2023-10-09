@@ -1,7 +1,8 @@
 local path = (...):gsub(".ecs.group$", "")
 local event = require(path .. ".event")
 local newSparseSet = require(path .. ".types.sparse_set")
-local utils = require(path .. ".utils")
+
+local componentMap = {}
 
 local groups = {}
 
@@ -15,6 +16,18 @@ local function callEvent(t, ...)
 end
 
 local function addEntityToGroups(entity)
+  for component, _ in pairs(entity) do
+    local componentGroups = componentMap[component]
+    if componentGroups then
+      for _, group in ipairs(componentGroups) do
+        if group:entityMatches(entity) then
+          group:add(entity)
+          callEvent(group.addedCallbacks, entity)
+        end
+      end
+    end
+  end
+
   for _, group in ipairs(groups) do
     if group:entityMatches(entity) then
       group:add(entity)
@@ -104,6 +117,13 @@ local function newGroup(...)
     addedCallbacks = {},
     removedCallbacks = {},
   }, groupMt)
+
+  for _, component in ipairs(group.components) do
+    if not componentMap[component] then
+      componentMap[component] = {}
+    end
+    table.insert(componentMap[component], group)
+  end
 
   table.insert(groups, group)
   return group
