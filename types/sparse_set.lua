@@ -27,6 +27,13 @@ function sparseSet:remove(item)
   self.sparse[newItem] = index
 end
 
+function sparseSet:sort(fn)
+  table.sort(self.dense, fn)
+  for i, v in ipairs(self.dense) do
+    self.sparse[v] = i
+  end
+end
+
 function sparseSet:has(item)
   return self.sparse[item] ~= nil
 end

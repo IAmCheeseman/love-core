@@ -7,7 +7,9 @@ event.define("entityChanged")
 
 local entityMt = {
   __newindex = function(t, k, v)
-    event.call("entityChanged", t)
+    if k ~= "__instanceIndex" then
+      event.call("entityChanged", t)
+    end
     rawset(t, k, v)
   end
 }

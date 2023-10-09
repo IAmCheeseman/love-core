@@ -3,6 +3,7 @@ local event = require(path .. ".event")
 local newGroup = require(path .. ".ecs.group")
 
 local animGroup = newGroup("x", "y", "sprite")
+animGroup:requireTag("drawable")
 
 event.on("update", function(dt)
   for entity in animGroup:iter() do
@@ -10,8 +11,9 @@ event.on("update", function(dt)
   end
 end)
 
-event.on("draw", function()
-  for entity in animGroup:iter() do
+event.on("entityDraw", function(entity)
+  -- for entity in animGroup:iter() do
+  if animGroup:has(entity) then
     entity.scalex = entity.scalex or 1
     entity.scaley = entity.scaley or 1
     entity.rotation = entity.rotation or 0
