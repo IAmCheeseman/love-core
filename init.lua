@@ -18,6 +18,7 @@ core.event.define("mouseMoved")
 core.viewport = require(path .. ".viewport")
 core.assetLoader = require(path .. ".asset_loader")
 core.vector = require(path .. ".vector")
+core.physics = require(path .. ".physics")
 
 core.newSparseSet = require(path .. ".types.sparse_set")
 core.newQueue = require(path .. ".types.queue")
