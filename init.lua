@@ -34,7 +34,6 @@ core.newTimer = require(path .. ".timer")
 core.newEntity = require(path .. ".ecs.entity")
 core.newGroup = require(path .. ".ecs.group")
 
-core.log = require(path .. ".log")
 core.state = require(path .. ".state")
 
 local utils = require(path .. ".utils")
