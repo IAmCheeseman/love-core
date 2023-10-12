@@ -4,7 +4,7 @@ Some basic functionality that I can just clone into a project to make games.
 
 ## Features
 
-- Fully featured(?) ECS
+- ECS
 - Event buses
 - [Question buses](https://untitledmodgame.com/blog/buses/)
 - Physics
