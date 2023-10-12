@@ -13,6 +13,8 @@ core.event.define("draw")
 core.event.define("ui")
 core.event.define("inkyUi")
 
+core.event.define("keyPressed")
+core.event.define("keyReleased")
 core.event.define("mousePressed")
 core.event.define("mouseReleased")
 core.event.define("mouseMoved")
@@ -93,6 +95,14 @@ function core.draw()
   core.viewport.draw("gui")
 
   love.graphics.reset()
+end
+
+function core.keyPressed(key, isRepeat)
+  core.event.call("keyPressed", key, isRepeat)
+end
+
+function core.keyReleased(key)
+  core.event.call("keyReleased", key)
 end
 
 function core.mousePressed(button)
