@@ -1,6 +1,7 @@
 # Love Core
 
-Some basic functionality that I can just clone into a project to make games.
+Some basic functionality that I can just clone into a project to make games.<br>
+Heavily inspired by [Oli's UMG](https://github.com/pakeke-constructor/umg-mod-monorepo).
 
 ## Features
 
