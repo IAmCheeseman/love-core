@@ -46,12 +46,12 @@ function sparseSet:iter()
   end
 end
 
-local function SparseSet()
+local function newSparseSet()
   return setmetatable({
     sparse = {},
     dense = {},
   }, sparseSet)
 end
 
-return SparseSet
+return newSparseSet
 

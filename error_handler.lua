@@ -1,5 +1,4 @@
-local path = (...):gsub(".error_handler", "")
-local log = require(path .. ".log")
+local path = (...):gsub(".error_handler$", "")
 local utf8 = require("utf8")
 
 local function errorPrinter(msg, layer)

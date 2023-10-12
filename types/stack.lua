@@ -19,10 +19,10 @@ function stack:flush(f)
   end
 end
 
-local function Stack()
+local function newStack()
   return setmetatable({
     items = {},
   }, stack)
 end
 
-return Stack
+return newStack

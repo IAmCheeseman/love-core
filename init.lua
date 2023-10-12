@@ -1,5 +1,7 @@
 local path = (...):gsub(".init$", "")
 
+local ecs = require(path .. ".ecs.ecs")
+
 local core = {}
 core.event = require(path .. ".event")
 core.collectors = require(path .. ".collectors")
@@ -25,6 +27,7 @@ core.vector = require(path .. ".vector")
 core.physics = require(path .. ".physics")
 
 core.newSparseSet = require(path .. ".types.sparse_set")
+core.newStack = require(path .. ".types.stack")
 core.newQueue = require(path .. ".types.queue")
 core.newTimer = require(path .. ".timer")
 
@@ -33,8 +36,6 @@ core.newGroup = require(path .. ".ecs.group")
 
 core.log = require(path .. ".log")
 core.state = require(path .. ".state")
-
-local ecs = require(path .. ".ecs.ecs")
 
 local utils = require(path .. ".utils")
 utils.copyTo(utils, core)

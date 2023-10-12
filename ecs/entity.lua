@@ -1,5 +1,4 @@
 local path = (...):gsub(".ecs.entity$", "")
-local ecs = require(path .. ".ecs.ecs")
 local utils = require(path .. ".utils")
 local event = require(path .. ".event")
 
