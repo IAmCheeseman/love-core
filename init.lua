@@ -2,6 +2,8 @@ local path = (...):gsub(".init$", "")
 
 local core = {}
 core.event = require(path .. ".event")
+core.collectors = require(path .. ".collectors")
+core.question = require(path .. ".question")
 
 core.event.define("preUpdate")
 core.event.define("update")
