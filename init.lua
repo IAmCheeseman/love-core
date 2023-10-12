@@ -52,7 +52,6 @@ core.removeEntity = ecs.removeEntity
 core.addEntity = ecs.addEntity
 
 require(path .. ".ecs.components")
-require(path .. ".error_handler")
 core.inky = require(path .. ".thirdparty.inky")
 core.ui = require(path .. ".ui")
 
