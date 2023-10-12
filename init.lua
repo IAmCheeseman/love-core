@@ -26,6 +26,7 @@ core.physics = require(path .. ".physics")
 
 core.newSparseSet = require(path .. ".types.sparse_set")
 core.newQueue = require(path .. ".types.queue")
+core.newTimer = require(path .. ".timer")
 
 core.newEntity = require(path .. ".ecs.entity")
 core.newGroup = require(path .. ".ecs.group")
