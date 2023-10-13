@@ -11,3 +11,6 @@ Heavily inspired by [Oli's UMG](https://github.com/pakeke-constructor/umg-mod-mo
 - Physics
 - [UI with Inky](https://github.com/Keyslam/Inky)
 - Basic data structures
+  - Sparse Sets
+  - Queues
+  - Stacks
