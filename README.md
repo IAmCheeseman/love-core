@@ -10,4 +10,4 @@ Heavily inspired by [Oli's UMG](https://github.com/pakeke-constructor/umg-mod-mo
 - [Question buses](https://untitledmodgame.com/blog/buses/)
 - Physics
 - UI
-- Basic data structors
+- Basic data structures
