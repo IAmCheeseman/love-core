@@ -99,4 +99,21 @@ function vector.rotated(x, y, r)
   return nx, ny
 end
 
+function vector.directionalInput(up, left, down, right)
+  local ix, iy = 0, 0
+  if love.keyboard.isDown(up) then
+    iy = iy - 1
+  end
+  if love.keyboard.isDown(left) then
+    ix = ix - 1
+  end
+  if love.keyboard.isDown(down) then
+    iy = iy + 1
+  end
+  if love.keyboard.isDown(right) then
+    ix = ix + 1
+  end
+  return core.vector.normalize(ix, iy)
+end
+
 return vector

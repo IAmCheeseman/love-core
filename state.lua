@@ -1,69 +1,45 @@
-local path = (...):gsub(".state$", "")
-local event = require(path .. ".event")
-local utils = require(path .. ".utils")
-local ecs = require(path .. ".ecs.ecs")
-
 local state = {}
 
-event.define("stateChanged")
+local states = {}
 
-local currentState = "none"
-local gameStates = {}
-
-local gameState = {}
-gameState.__index = gameState
-
-function state.getCurrent()
-  return gameStates[currentState]
+function state.create(name)
+  states[name] = {
+    enterCallbacks = {},
+    updateCallbacks = {},
+    drawCallbacks = {},
+    exitCallbacks = {},
+  }
 end
 
-function state.setCurrent(name)
-  currentState = name
-  utils.nilCall(state.getCurrent().initialize)
-  event.call("stateChanged", name)
-  ecs.clearEntities()
+function state.onEnter(name, callback)
+  table.insert(states[name].enterCallbacks, callback)
 end
 
-function state.newState(name)
-  local newState = {}
-  gameStates[name] = newState
-
-  return newState
+function state.onUpdate(name, callback)
+  table.insert(states[name].updateCallbacks, callback)
 end
 
-function gameState:clear()
-  self.entities = {}
-  event.call("stateCleared", self)
+function state.onDraw(name, callback)
+  table.insert(states[name].drawCallbacks, callback)
 end
 
-event.on("update", function(dt)
-  utils.nilCall(state.getCurrent().update, dt)
-end)
+function state.onExit(name, callback)
+  table.insert(states[name].exitCallbacks, callback)
+end
 
-event.on("draw", function()
-  utils.nilCall(state.getCurrent().draw)
-end)
+function state.call(name, callbackType, ...)
+  local callbacks = callbackType .. "Callbacks"
+  local s = states[name]
+  if not s then
+    error("State '" .. tostring(name) .. "' doesn't exist")
+  end
+  if not s[callbacks] then
+    error("Invalid callback type.")
+  end
 
-event.on("ui", function()
-  utils.nilCall(state.getCurrent().ui)
-end)
-
-event.on("inkyUi", function()
-  utils.nilCall(state.getCurrent().inkyUi)
-end)
-
-event.on("mousePressed", function(button)
-  utils.nilCall(state.getCurrent().mousePressed, button)
-end)
-
-event.on("mouseReleased", function(button)
-  utils.nilCall(state.getCurrent().mouseReleased, button)
-end)
-
-event.on("mouseMoved", function(dx, dy)
-  utils.nilCall(state.getCurrent().mouseMoved, dx, dy)
-end)
-
-state.newState("none")
+  for _, callback in ipairs(s[callbacks]) do
+    callback(...)
+  end
+end
 
 return state
