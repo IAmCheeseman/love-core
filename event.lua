@@ -34,16 +34,16 @@ function event.on(...)
     method = callback,
     priority = priority,
   })
+
+  table.sort(events[name].callbacks, function(a, b)
+    return a.priority > b.priority
+  end)
 end
 
 function event.call(name, ...)
   if not events[name] then
     error(("Event '%s' does not exist."):format(name))
   end
-
-  table.sort(events[name].callbacks, function(a, b)
-    return a.priority > b.priority
-  end)
 
   for _, callback in ipairs(events[name].callbacks) do
     callback.method(...)
