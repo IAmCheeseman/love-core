@@ -8,7 +8,7 @@ event.on("update", math.huge, function(dt)
     t.justOver = false
     if not t.isOver then
       t.timeLeft = t.timeLeft - dt
-      if t.timerLeft <= 0 then
+      if t.timeLeft <= 0 then
         t.isOver = true
         t.justOver = true
 
@@ -22,6 +22,7 @@ event.on("update", math.huge, function(dt)
 end)
 
 local timer = {}
+timer.__index = timer
 
 function timer:start(time)
   time = time or self.waitTime
@@ -30,14 +31,18 @@ function timer:start(time)
 end
 
 local function newTimer(time)
-  return setmetatable({
+  local t = setmetatable({
     timeLeft = 0,
     waitTime = time,
     autoRestart = false,
 
-    isOver = false,
+    isOver = true,
     justOver = false,
   }, timer)
+
+  table.insert(timers, t)
+
+  return t
 end
 
 return newTimer
