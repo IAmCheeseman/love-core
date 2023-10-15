@@ -19,6 +19,7 @@ physicsGroup:onAdded(function(entity)
 
   object.body:setPosition(entity.x, entity.y)
   object.body:setFixedRotation(p.fixedRotation or false)
+  -- I weigh 74.84274kg
   object.body:setMass(p.mass or 74.84274)
   object.fixture:setRestitution(p.bounciness or 0)
   object.fixture:setFriction(p.friction or 1)
