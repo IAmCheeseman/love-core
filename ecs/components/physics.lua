@@ -2,20 +2,31 @@ local path = (...):gsub(".ecs.components.physics$", "")
 local newGroup = require(path .. ".ecs.group")
 local physics = require(path .. ".physics")
 
--- FIXME
-local physicsGroup = newGroup("physicsType", "physicsShape")
+local physicsGroup = newGroup("physics")
 
 physicsGroup:onAdded(function(entity)
-  if entity.physicsType == "dynamic" then
-    entity.physicsObject = physics.newDynamicObject(entity.physicsShape)
-  elseif entity.physicsType == "static" then
-    entity.physicsObject = physics.newStaticObject(entity.physicsShape)
+  local shape = entity.physics.shape
+  assert(shape, "You must define a physics shape")
+  local p = entity.physics
+
+  local object
+  local physicsType = p.type or "dynamic"
+  if physicsType == "dynamic" then
+    object = physics.newDynamicObject(shape)
+  elseif physicsType == "static" then
+    object = physics.newStaticObject(shape)
   end
 
-  entity.physicsObject.body:setPosition(entity.x, entity.y)
+  object.body:setPosition(entity.x, entity.y)
+  object.body:setFixedRotation(p.fixedRotation or false)
+  object.body:setMass(p.mass or 74.84274)
+  object.fixture:setRestitution(p.bounciness or 0)
+  object.fixture:setFriction(p.friction or 1)
+
+  entity.physics.object = object
 end)
 
 physicsGroup:onRemoved(function(entity)
-  entity.physicsObject.body:destroy()
-  entity.physicsObject = nil
+  entity.physics.object.body:destroy()
+  entity.physics = nil
 end)
