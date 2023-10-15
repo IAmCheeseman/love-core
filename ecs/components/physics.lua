@@ -16,7 +16,6 @@ physicsGroup:onAdded(function(entity)
 end)
 
 physicsGroup:onRemoved(function(entity)
-  print("OIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
   if not entity.physicsObject then
     return
   end
