@@ -30,7 +30,7 @@ core.math = require(path .. ".mathf")
 core.newSparseSet = require(path .. ".types.sparse_set")
 core.newStack = require(path .. ".types.stack")
 core.newQueue = require(path .. ".types.queue")
-core.newTimer = require(path .. ".timer")
+core.newTimer = require(path .. ".types.timer")
 
 core.newEntity = require(path .. ".ecs.entity")
 core.newGroup = require(path .. ".ecs.group")

@@ -1,4 +1,4 @@
-local path = (...):gsub(".timer$", "")
+local path = (...):gsub(".types.timer$", "")
 local event = require(path .. ".event.event")
 
 local timers = {}
