@@ -14,3 +14,12 @@ physicsGroup:onAdded(function(entity)
 
   entity.physicsObject.body:setPosition(entity.x, entity.y)
 end)
+
+physicsGroup:onRemoved(function(entity)
+  print("OIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+  if not entity.physicsObject then
+    return
+  end
+  entity.physicsObject.body:destroy()
+  entity.physicsObject = nil
+end)

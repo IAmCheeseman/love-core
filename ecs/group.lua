@@ -19,7 +19,7 @@ local function addEntityToGroups(entity)
   for component, _ in pairs(entity) do
     local componentGroups = componentMap[component]
     if componentGroups then
-      for _, group in ipairs(componentGroups) do
+      for group in componentGroups:iter() do
         if group:entityMatches(entity) then
           group:add(entity)
           callEvent(group.addedCallbacks, entity)
@@ -120,9 +120,9 @@ local function newGroup(...)
 
   for _, component in ipairs(group.components) do
     if not componentMap[component] then
-      componentMap[component] = {}
+      componentMap[component] = newSparseSet()
     end
-    table.insert(componentMap[component], group)
+    componentMap[component]:add(group)
   end
 
   table.insert(groups, group)

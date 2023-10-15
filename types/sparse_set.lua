@@ -24,7 +24,9 @@ function sparseSet:remove(item)
   utils.swapRemove(self.dense, index)
 
   local newItem = self.dense[index]
-  self.sparse[newItem] = index
+  if newItem then
+    self.sparse[newItem] = index
+  end
 end
 
 function sparseSet:sort(fn)
