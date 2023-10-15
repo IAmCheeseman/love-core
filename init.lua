@@ -23,9 +23,9 @@ core.event.define("mouseMoved")
 
 core.viewport = require(path .. ".viewport")
 core.assetLoader = require(path .. ".asset_loader")
-core.vector = require(path .. ".vector")
 core.physics = require(path .. ".physics")
 core.component = require(path .. ".ecs.component")
+core.math = require(path .. ".mathf")
 
 core.newSparseSet = require(path .. ".types.sparse_set")
 core.newStack = require(path .. ".types.stack")
@@ -40,7 +40,6 @@ core.state = require(path .. ".state")
 
 local utils = require(path .. ".utils")
 utils.copyTo(utils, core)
-utils.copyTo(require(path .. ".math_funcs"), core)
 
 core.tickRate = 1 / 20
 local tickDelta = 0

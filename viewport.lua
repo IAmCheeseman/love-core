@@ -1,5 +1,5 @@
 local path = (...):gsub(".viewport$", "")
-local m = require(path .. ".math_funcs")
+local mathf = require(path .. ".mathf")
 
 local viewport = {}
 
@@ -94,7 +94,7 @@ function viewport.draw(name)
   local quad
   if v.smoothCamera then
     quad = love.graphics.newQuad(
-        -m.frac(v.camerax), -m.frac(v.cameray),
+        -mathf.frac(v.camerax), -mathf.frac(v.cameray),
         v.width, v.height,
         v.width + 1, v.height + 1)
   else
