@@ -16,9 +16,6 @@ physicsGroup:onAdded(function(entity)
 end)
 
 physicsGroup:onRemoved(function(entity)
-  if not entity.physicsObject then
-    return
-  end
   entity.physicsObject.body:destroy()
   entity.physicsObject = nil
 end)
