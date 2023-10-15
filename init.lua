@@ -3,9 +3,9 @@ local path = (...):gsub(".init$", "")
 local ecs = require(path .. ".ecs.ecs")
 
 local core = {}
-core.event = require(path .. ".event")
-core.collectors = require(path .. ".collectors")
-core.question = require(path .. ".question")
+core.event = require(path .. ".event.event")
+core.collectors = require(path .. ".event.collectors")
+core.question = require(path .. ".event.question")
 
 core.event.define("preUpdate")
 core.event.define("update")

@@ -1,5 +1,5 @@
 local path = (...):gsub(".scene$", "")
-local event = require(path .. ".event")
+local event = require(path .. ".event.event")
 local utils = require(path .. ".utils")
 local ecs = require(path .. ".ecs.ecs")
 

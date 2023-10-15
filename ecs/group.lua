@@ -1,5 +1,5 @@
 local path = (...):gsub(".ecs.group$", "")
-local event = require(path .. ".event")
+local event = require(path .. ".event.event")
 local newSparseSet = require(path .. ".types.sparse_set")
 
 local componentMap = {}

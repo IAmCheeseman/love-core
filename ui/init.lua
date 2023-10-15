@@ -1,6 +1,6 @@
 local path = (...):gsub(".ui$", "")
 local inky = require(path .. ".thirdparty.inky")
-local event = require(path .. ".event")
+local event = require(path .. ".event.event")
 local utils = require(path .. ".utils")
 
 local scene = inky.scene()

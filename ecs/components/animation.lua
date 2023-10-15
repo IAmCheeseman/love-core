@@ -1,5 +1,5 @@
 local path = (...):gsub(".ecs.components.animation$", "")
-local event = require(path .. ".event")
+local event = require(path .. ".event.event")
 local utils = require(path .. ".utils")
 local newGroup = require(path .. ".ecs.group")
 

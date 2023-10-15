@@ -1,5 +1,5 @@
 local path = (...):gsub(".ecs.components.drawable$", "")
-local event = require(path .. ".event")
+local event = require(path .. ".event.event")
 local newGroup = require(path .. ".ecs.group")
 
 local drawableGroup = newGroup("drawable")

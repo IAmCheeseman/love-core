@@ -1,5 +1,5 @@
 local path = (...):gsub(".ecs.components.sprite$", "")
-local event = require(path .. ".event")
+local event = require(path .. ".event.event")
 local newGroup = require(path .. ".ecs.group")
 
 local animGroup = newGroup("x", "y", "sprite")

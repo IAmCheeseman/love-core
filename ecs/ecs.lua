@@ -1,5 +1,5 @@
 local path = (...):gsub(".ecs.ecs$", "")
-local event = require(path .. ".event")
+local event = require(path .. ".event.event")
 local utils = require(path .. ".utils")
 local newQueue = require(path .. ".types.queue")
 

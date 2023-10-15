@@ -1,6 +1,6 @@
 local path = (...):gsub(".ecs.entity$", "")
 local utils = require(path .. ".utils")
-local event = require(path .. ".event")
+local event = require(path .. ".event.event")
 
 event.define("entityChanged")
 
