@@ -19,7 +19,7 @@ event.on("entityDraw", function(entity)
     entity.rotation = entity.rotation or 0
 
     entity.sprite:draw(
-        entity.x, entity.y,
+        math.floor(entity.x), math.floor(entity.y),
         entity.rotation,
         entity.scalex, entity.scaley)
   end
