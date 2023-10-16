@@ -69,7 +69,7 @@ function viewport.drawTo(name, f)
   local v = viewports[name]
   love.graphics.push()
   love.graphics.setCanvas(v.canvas)
-  love.graphics.translate(-v.camerax, -v.cameray)
+  love.graphics.translate(-math.floor(v.camerax), -math.floor(v.cameray))
   f()
   love.graphics.setCanvas()
   love.graphics.pop()
@@ -94,7 +94,7 @@ function viewport.draw(name)
   local quad
   if v.smoothCamera then
     quad = love.graphics.newQuad(
-        -mathf.frac(v.camerax), -mathf.frac(v.cameray),
+        mathf.frac(v.camerax), mathf.frac(v.cameray),
         v.width, v.height,
         v.width + 1, v.height + 1)
   else
