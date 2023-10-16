@@ -1,6 +1,6 @@
 local path = (...):gsub(".asset_loader$", "")
 local json = require(path .. ".thirdparty.json")
-local Sprite = require(path .. ".types.sprite")
+local newSprite = require(path .. ".types.sprite")
 
 local assetLoader = {}
 
@@ -13,7 +13,7 @@ local loaders = {
   png = love.graphics.newImage,
   jpg = love.graphics.newImage,
 
-  ase = Sprite,
+  ase = newSprite,
 
   fs = love.graphics.newShader,
   vs = love.graphics.newShader,
