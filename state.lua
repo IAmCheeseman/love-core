@@ -4,11 +4,31 @@ local states = {}
 
 function state.create(name)
   states[name] = {
+    conditions = {},
     enterCallbacks = {},
     updateCallbacks = {},
     drawCallbacks = {},
     exitCallbacks = {},
   }
+end
+
+function state.canEnter(entity, name)
+  local s = states[name]
+  if #s.conditions == 0 then
+    return true
+  end
+
+  local res = true
+
+  for _, v in ipairs(s.conditions) do
+    res = res and v(entity)
+  end
+
+  return res
+end
+
+function state.enterCondition(name, condition)
+  table.insert(states[name].conditions, condition)
 end
 
 function state.onEnter(name, callback)
