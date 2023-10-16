@@ -16,22 +16,18 @@ local function callEvent(t, ...)
 end
 
 local function addEntityToGroups(entity)
+  local checkedGroups = {}
+
   for component, _ in pairs(entity) do
     local componentGroups = componentMap[component]
     if componentGroups then
       for group in componentGroups:iter() do
-        if group:entityMatches(entity) then
+        if not checkedGroups[group] and group:entityMatches(entity) then
           group:add(entity)
+          checkedGroups[group] = true
           callEvent(group.addedCallbacks, entity)
         end
       end
-    end
-  end
-
-  for _, group in ipairs(groups) do
-    if group:entityMatches(entity) then
-      group:add(entity)
-      callEvent(group.addedCallbacks, entity)
     end
   end
 end
