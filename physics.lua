@@ -33,7 +33,7 @@ function physics.newKinematicObject(shape)
   return newObject("kinematic", shape)
 end
 
-event.on("update", math.huge, function(dt)
+event.on("update", 100, function(dt)
   world:update(dt)
 end)
 
