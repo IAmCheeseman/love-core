@@ -21,6 +21,9 @@ end
 
 function component.create(name, overrides)
   overrides = overrides or {}
+  if not definitions[name] then
+    error(("Component '%s' does not exist."):format(name))
+  end
   local c = utils.deepCopy(definitions[name])
   overrideTable(overrides, c)
   return c

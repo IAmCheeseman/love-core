@@ -25,8 +25,8 @@ local timer = {}
 timer.__index = timer
 
 function timer:start(time)
-  time = time or self.waitTime
-  self.timeLeft = time
+  self.waitTime = time or self.waitTime
+  self.timeLeft = self.waitTime
   self.isOver = false
 end
 
