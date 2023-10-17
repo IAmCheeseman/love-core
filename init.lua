@@ -53,8 +53,13 @@ core.removeEntity = ecs.removeEntity
 core.addEntity = ecs.addEntity
 
 require(path .. ".ecs.components")
+require(path .. ".debug")
 core.inky = require(path .. ".thirdparty.inky")
 core.ui = require(path .. ".ui")
+
+function core.setCallbacks()
+  require(path .. ".set_callbacks")
+end
 
 function core.getRuntime()
   return runtime
