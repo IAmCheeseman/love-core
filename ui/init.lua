@@ -7,6 +7,9 @@ local scene = inky.scene()
 local pointer = inky.pointer(scene)
 
 local ui = {}
+
+ui.kirigami = require(path .. ".thirdparty.kirigami")
+
 local button = require(path .. ".ui.button")
 local label = require(path .. ".ui.label")
 
@@ -27,8 +30,6 @@ function ui.label(text, settings)
 end
 
 ui.theme = require(path .. ".ui.theme")
-ui.newVerticalRenderer = require(path .. ".ui.vertical_renderer")
-ui.newHorizontalRenderer = require(path .. ".ui.horizontal_renderer")
 
 function ui.begin()
   scene:beginFrame()
