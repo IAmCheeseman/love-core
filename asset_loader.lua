@@ -38,8 +38,10 @@ local function loadAsset(filePath)
   end
 
   local info = love.filesystem.getInfo(filePath)
-  if info.type == "directory" then
-    return assetLoader.load(filePath)
+  if info then
+    if info.type == "directory" then
+      return assetLoader.load(filePath)
+    end
   end
 
   return nil
@@ -90,6 +92,8 @@ function assetLoader.loadScripts(dirPath)
         if fileName:gmatch(".lua$") then
           require(filePath:gsub(".lua$", ""))
         end
+      elseif info.type == "directory" then
+        assetLoader.loadScripts(filePath)
       end
     end
   end

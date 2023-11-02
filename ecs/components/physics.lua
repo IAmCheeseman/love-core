@@ -22,7 +22,7 @@ physicsGroup:onAdded(function(entity)
   -- I weigh 74.84274kg
   object.body:setMass(p.mass or 74.84274)
   object.fixture:setRestitution(p.bounciness or 0)
-  object.fixture:setFriction(p.friction or 1)
+  object.fixture:setFriction(p.friction or 0)
 
   entity.physics.object = object
 end)

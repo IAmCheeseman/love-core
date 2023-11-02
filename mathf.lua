@@ -30,6 +30,10 @@ function mathf.clamp(a, min, max)
   return a
 end
 
+function mathf.sign(a)
+  return a < 0 and -1 or 1
+end
+
 function mathf.step(a, by)
   return math.floor((a / by) + 0.5) * by
 end

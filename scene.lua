@@ -19,9 +19,9 @@ end
 
 function scene.setCurrent(name)
   currentState = name
+  ecs.clearEntities()
   utils.nilCall(scene.getCurrent().initialize)
   event.call("stateChanged", name)
-  ecs.clearEntities()
 end
 
 function scene.newState(name)
